@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_frog/dart_frog.dart';
 import 'package:http/http.dart' as http;
 
@@ -7,7 +9,6 @@ Future<Response> onRequest(RequestContext context) async {
 
   final params = request.uri.queryParameters;
 
-
   var query = params['q'] ?? 'how are you buddy??';
 
   final String apiUrl =
@@ -15,5 +16,5 @@ Future<Response> onRequest(RequestContext context) async {
   print(apiUrl);
 
   final response = await http.get(Uri.parse(apiUrl));
-  return Response.json(body: response);
+  return Response.json(body: jsonEncode(response.body));
 }
