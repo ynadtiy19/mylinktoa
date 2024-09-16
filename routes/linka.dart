@@ -1,15 +1,13 @@
 import 'package:dart_frog/dart_frog.dart';
 import 'package:http/http.dart' as http;
 
-Response onRequest(RequestContext context) {
-  //medium/s?q=apple%20iphone%2013
+Future<Response> onRequest(RequestContext context) async {
+  //linka?q=how are you buddy??
   final request = context.request;
 
-  // Access the query parameters as a `Map<String, String>`.
   final params = request.uri.queryParameters;
 
-  // Get the value for the key `name`.
-  // Default to `there` if there is no query parameter.
+
   var query = params['q'] ?? 'how are you buddy??';
 
   final String apiUrl =
